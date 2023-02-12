@@ -29,5 +29,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.btnSignature.setOnClickListener(v -> {
+            // 先调用校验签名
+            JniUtils.signatureVerify(MainActivity.this);
+            String test = "user=123&pwd=123456";
+            String jniMd5 = JniUtils.signatureParams(test);
+            Log.i("TAG", "jni => 校验结果: " + jniMd5);
+        });
+
     }
 }

@@ -1,5 +1,7 @@
 package com.xww.notes.jni;
 
+import android.content.Context;
+
 /**
  * create at : 12/02/2023 - 3:27 PM
  * author : xuweiwei
@@ -7,6 +9,11 @@ package com.xww.notes.jni;
  * description : <功能说明>
  */
 public class JniUtils {
+
+    /**
+     * 签名校验
+     */
+    public static native void signatureVerify(Context context);
 
     /**
      * 对网络请求参数进行加密算法

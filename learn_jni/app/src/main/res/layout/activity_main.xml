@@ -18,6 +18,12 @@
             android:layout_height="wrap_content"
             android:text="Jni MD5 加密" />
 
+        <Button
+            android:id="@+id/btn_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Signature" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
