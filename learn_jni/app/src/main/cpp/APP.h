@@ -16,7 +16,7 @@ namespace toolkit {
 
         static std::string get_package_name(JNIEnv *env, jclass clazz, jobject obj);
 
-        static std::string get_apk_signature(JNIEnv *env, jclass clazz, jobject obj);
+        static std::string get_signature(JNIEnv *env, jclass clazz, jobject obj);
     };
 
 }

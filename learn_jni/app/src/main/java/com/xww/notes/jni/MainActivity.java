@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             JniUtils.signatureVerify(MainActivity.this);
             String test = "user=123&pwd=123456";
             String jniMd5 = JniUtils.signatureParams(test);
-            Log.i("TAG", "jni => 校验结果: " + jniMd5);
+            Log.i("TAG", " 加密后的参数签名 = " + jniMd5);
         });
 
     }
