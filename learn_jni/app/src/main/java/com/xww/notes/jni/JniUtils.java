@@ -1,6 +1,7 @@
 package com.xww.notes.jni;
 
 import android.content.Context;
+import android.util.Log;
 
 /**
  * create at : 12/02/2023 - 3:27 PM
@@ -9,6 +10,11 @@ import android.content.Context;
  * description : <功能说明>
  */
 public class JniUtils {
+
+    static {
+        System.loadLibrary("jni");
+        Log.i("JNI", "static initializer: ");
+    }
 
     /**
      * 签名校验

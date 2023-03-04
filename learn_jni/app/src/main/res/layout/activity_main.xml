@@ -16,13 +16,15 @@
             android:id="@+id/btn_md5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jni MD5 加密" />
+            android:text="Jni MD5 加密"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btn_signature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Signature" />
+            android:text="Signature"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
