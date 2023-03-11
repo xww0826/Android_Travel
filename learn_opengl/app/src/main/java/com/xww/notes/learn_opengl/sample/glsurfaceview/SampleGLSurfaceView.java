@@ -24,11 +24,11 @@ public class SampleGLSurfaceView extends GLSurfaceView {
         init();
     }
 
-    private void init(){
+    private void init() {
         // 创建 OpenGL ES 2.0 上下文
         setEGLContextClientVersion(2);
         // 创建 GLSurfaceView 的渲染器
-        renderer = new SampleGLRenderer();
+        renderer = new SampleGLRenderer(getContext());
         // 设置渲染器
         setRenderer(renderer);
         /**
@@ -39,4 +39,6 @@ public class SampleGLSurfaceView extends GLSurfaceView {
          */
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
+
+
 }

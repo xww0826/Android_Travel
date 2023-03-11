@@ -21,4 +21,17 @@ public class GLSurfaceActivity extends AppCompatActivity {
         glSurfaceView = new SampleGLSurfaceView(this);
         setContentView(glSurfaceView);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        glSurfaceView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        glSurfaceView.onPause();
+    }
+
 }

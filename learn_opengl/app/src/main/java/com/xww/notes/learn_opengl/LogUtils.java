@@ -10,7 +10,7 @@ public class LogUtils {
     }
 
     public static boolean isDebug = true;
-    private static final String TAG = "learn note ---> ";
+    private static final String TAG = "AT ---> ";
 
     // 下面四个是默认tag的函数  
     public static void i(String msg) {
