@@ -6,8 +6,8 @@ import android.opengl.GLSurfaceView;
 
 import com.xww.notes.learn_opengl.LogUtils;
 import com.xww.notes.learn_opengl.R;
+import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.Rectangle;
 import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.ShaderProgram;
-import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.Triangle;
 import com.xww.notes.learn_opengl.utils.ShaderUtils;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -21,17 +21,21 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class SampleGLRenderer implements GLSurfaceView.Renderer {
 
-    private ShaderProgram program;
+    private ShaderProgram shader;
     private Context context;
 
     public SampleGLRenderer(Context context) {
         this.context = context;
     }
 
-    private void initProgram() {
+    private void initShader() {
         String vertShader = ShaderUtils.getRawShader(context, R.raw.vert);
         String fragShader = ShaderUtils.getRawShader(context, R.raw.frag);
-        program = new Triangle(vertShader, fragShader);
+        shader = new Rectangle(vertShader, fragShader);
+    }
+
+    public void setShader(ShaderProgram shader) {
+        this.shader = shader;
     }
 
     /**
@@ -42,7 +46,7 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
         LogUtils.d("onSurfaceCreated");
         // 设置绘图背景
         GLES20.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-        initProgram();
+        initShader();
     }
 
     /**
@@ -63,6 +67,10 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
         LogUtils.d("onDrawFrame");
         // 首先清理屏幕
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        program.draw();
+        shader.draw();
+    }
+
+    public ShaderProgram getShader() {
+        return shader;
     }
 }

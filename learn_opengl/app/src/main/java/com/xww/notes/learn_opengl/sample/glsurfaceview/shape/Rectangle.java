@@ -6,27 +6,28 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-public class Triangle extends ShaderProgram {
+public class Rectangle extends ShaderProgram {
 
     private final FloatBuffer vertexBuffer;
 
     // 每个顶点的坐标数量
     private static final int PER_VERTEX = 3;
-    // 三角形三个点的坐标值(逆时针方向,在 3D 坐标系中,方向决定了哪面是正面)
-    private static final float TRIANGLE_VERTEXES[] = {
-            0.0f, 0.5f, 0.0f, // 上顶点
-            -0.5f, 0.0f, 0.0f, // 左下顶点
-            0.5f, 0.0f, 0.0f  // 右下顶点
+    // 矩形四个点的坐标值(逆时针方向,在 3D 坐标系中,方向决定了哪面是正面)
+    private static final float RECTANGLE_VERTEXES[] = {
+            -0.5f, 0.5f, 0.0f, // 左上顶点
+            -0.5f, -0.5f, 0.0f, // 左下顶点
+            0.5f, -0.5f, 0.0f,  // 右下顶点
+            0.5f, 0.5f, 0.0f // 右上顶点
     };
 
-    public Triangle(String vertShader, String fragShader) {
+    public Rectangle(String vertShader, String fragShader) {
         super(vertShader, fragShader);
         // 初始化顶点坐标数据，坐标点的数目 * float所占字节
-        ByteBuffer bb = ByteBuffer.allocateDirect(TRIANGLE_VERTEXES.length * FLOAT_BYTE);
+        ByteBuffer bb = ByteBuffer.allocateDirect(RECTANGLE_VERTEXES.length * FLOAT_BYTE);
         bb.order(ByteOrder.nativeOrder());
         vertexBuffer = bb.asFloatBuffer();
         // 把坐标添加到FloatBuffer
-        vertexBuffer.put(TRIANGLE_VERTEXES);
+        vertexBuffer.put(RECTANGLE_VERTEXES);
         // 设置 buffer 的位置为起始点0
         vertexBuffer.position(0);
     }
@@ -45,7 +46,7 @@ public class Triangle extends ShaderProgram {
         // 通过 color 设置绘制的颜色值
         GLES20.glUniform4fv(color, 1, fillColor, 0);
         // 绘制顶点数组
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, TRIANGLE_VERTEXES.length / PER_VERTEX);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, RECTANGLE_VERTEXES.length / PER_VERTEX);
         // 操作完后,取消允许操作顶点对象 position
         GLES20.glDisableVertexAttribArray(position);
     }
