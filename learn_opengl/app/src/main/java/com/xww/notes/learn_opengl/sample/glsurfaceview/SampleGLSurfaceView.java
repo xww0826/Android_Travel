@@ -5,6 +5,8 @@ import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
 import com.xww.notes.learn_opengl.R;
+import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.Circle;
+import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.ColorfulCircle;
 import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.Rectangle;
 import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.ShaderProgram;
 import com.xww.notes.learn_opengl.sample.glsurfaceview.shape.ShapeEnum;
@@ -65,8 +67,15 @@ public class SampleGLSurfaceView extends GLSurfaceView {
                 case RECTANGLE:
                     shader = new Rectangle(vertShader, fragShader);
                     break;
+                case CIRCLE:
+                    shader = new Circle(vertShader, fragShader);
+                    break;
+                case COLORFUL_CIRCLE:
+                    shader = new ColorfulCircle(vertShader, fragShader);
+                    break;
             }
             renderer.setShader(shader);
+            shader.initShader();
             requestRender();
         });
     }

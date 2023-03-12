@@ -2,16 +2,14 @@ package com.xww.notes.learn_opengl.sample.glsurfaceview.shape;
 
 import android.opengl.GLES20;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import com.xww.notes.learn_opengl.utils.ShaderUtils;
+
 import java.nio.FloatBuffer;
 
 public class Triangle extends ShaderProgram {
 
-    private final FloatBuffer vertexBuffer;
+    private FloatBuffer vertexBuffer;
 
-    // 每个顶点的坐标数量
-    private static final int PER_VERTEX = 3;
     // 三角形三个点的坐标值(逆时针方向,在 3D 坐标系中,方向决定了哪面是正面)
     private static final float TRIANGLE_VERTEXES[] = {
             0.0f, 0.5f, 0.0f, // 上顶点
@@ -21,15 +19,8 @@ public class Triangle extends ShaderProgram {
 
     public Triangle(String vertShader, String fragShader) {
         super(vertShader, fragShader);
-        // 初始化顶点坐标数据，坐标点的数目 * float所占字节
-        ByteBuffer bb = ByteBuffer.allocateDirect(TRIANGLE_VERTEXES.length * FLOAT_BYTE);
-        bb.order(ByteOrder.nativeOrder());
-        vertexBuffer = bb.asFloatBuffer();
-        // 把坐标添加到FloatBuffer
-        vertexBuffer.put(TRIANGLE_VERTEXES);
-        // 设置 buffer 的位置为起始点0
-        vertexBuffer.position(0);
     }
+
 
     @Override
     public void draw() {
@@ -48,6 +39,11 @@ public class Triangle extends ShaderProgram {
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, TRIANGLE_VERTEXES.length / PER_VERTEX);
         // 操作完后,取消允许操作顶点对象 position
         GLES20.glDisableVertexAttribArray(position);
+    }
+
+    @Override
+    public void initShader() {
+        vertexBuffer = ShaderUtils.createFloatBuffer(TRIANGLE_VERTEXES, 0);
     }
 }
     

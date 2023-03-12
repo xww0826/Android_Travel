@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 
 /**
  * create at : 11/03/2023 - 9:12 PM
@@ -121,4 +124,20 @@ public class ShaderUtils {
         return shader;
     }
 
+    /**
+     * 创建顶点信息
+     *
+     * @param vertex 顶点数据
+     */
+    public static FloatBuffer createFloatBuffer(float[] vertex, int position) {
+        // 初始化顶点坐标数据，坐标点的数目 * float所占字节
+        ByteBuffer bb = ByteBuffer.allocateDirect(vertex.length * Float.BYTES);
+        bb.order(ByteOrder.nativeOrder());
+        FloatBuffer vertexBuffer = bb.asFloatBuffer();
+        // 把坐标添加到FloatBuffer
+        vertexBuffer.put(vertex);
+        // 设置 buffer 的位置为起始点
+        vertexBuffer.position(position);
+        return vertexBuffer;
+    }
 }

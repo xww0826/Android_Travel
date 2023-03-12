@@ -3,22 +3,15 @@ package com.xww.notes.learn_opengl.sample.glsurfaceview.shape;
 import android.opengl.GLES20;
 
 import com.xww.notes.learn_opengl.utils.ShaderUtils;
+import com.xww.notes.learn_opengl.utils.ShapeUtils;
 
 import java.nio.FloatBuffer;
 
-public class Rectangle extends ShaderProgram {
+public class Circle extends ShaderProgram {
 
     private FloatBuffer vertexBuffer;
 
-    // 矩形四个点的坐标值(逆时针方向,在 3D 坐标系中,方向决定了哪面是正面)
-    private static final float RECTANGLE_VERTEXES[] = {
-            -0.5f, -0.5f, 0.0f, // 左下顶点
-            0.5f, -0.5f, 0.0f,  // 右下顶点
-            -0.5f, 0.5f, 0.0f, // 左上顶点
-            0.5f, 0.5f, 0.0f // 右上顶点
-    };
-
-    public Rectangle(String vertShader, String fragShader) {
+    public Circle(String vertShader, String fragShader) {
         super(vertShader, fragShader);
     }
 
@@ -36,14 +29,16 @@ public class Rectangle extends ShaderProgram {
         // 通过 color 设置绘制的颜色值
         GLES20.glUniform4fv(color, 1, fillColor, 0);
         // 绘制顶点数组
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, RECTANGLE_VERTEXES.length / PER_VERTEX);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 45);
         // 操作完后,取消允许操作顶点对象 position
         GLES20.glDisableVertexAttribArray(position);
     }
 
     @Override
     public void initShader() {
-        vertexBuffer = ShaderUtils.createFloatBuffer(RECTANGLE_VERTEXES, 0);
+        float[] points = ShapeUtils.getCirclePoints(0f, 0f, 0.75f, 45);
+        float[] vertexes = ShapeUtils.adjustCoord(points, width, height);
+        vertexBuffer = ShaderUtils.createFloatBuffer(vertexes, 0);
     }
 }
     

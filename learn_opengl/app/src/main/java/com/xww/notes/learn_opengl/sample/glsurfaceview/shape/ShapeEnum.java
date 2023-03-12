@@ -10,5 +10,9 @@ public enum ShapeEnum {
 
     TRIANGLE,
 
-    RECTANGLE
+    RECTANGLE,
+
+    CIRCLE,
+
+    COLORFUL_CIRCLE
 }

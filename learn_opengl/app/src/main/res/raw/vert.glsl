@@ -6,7 +6,10 @@
 //    后面我们会在着色器程序中取出来操作顶点着色器中的数据
 
 attribute vec4 vPosition;
+attribute vec4 aColor;
+varying vec4 vColor;
 
 void main(){
     gl_Position = vPosition;
+    vColor = aColor;
 }

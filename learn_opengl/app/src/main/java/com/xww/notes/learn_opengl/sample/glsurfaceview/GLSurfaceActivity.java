@@ -29,7 +29,10 @@ public class GLSurfaceActivity extends AppCompatActivity {
         glSurfaceView = findViewById(R.id.gl_view);
         binding.btnTriangle.setOnClickListener(v -> glSurfaceView.changeShape(ShapeEnum.TRIANGLE));
         binding.btnRectangle.setOnClickListener(v -> glSurfaceView.changeShape(ShapeEnum.RECTANGLE));
+        binding.btnCircle.setOnClickListener(v -> glSurfaceView.changeShape(ShapeEnum.CIRCLE));
         binding.btnRandomColor.setOnClickListener(v -> glSurfaceView.changeColor());
+        binding.btnColors.setOnClickListener(v -> glSurfaceView.changeShape(ShapeEnum.COLORFUL_CIRCLE));
+
     }
 
     @Override

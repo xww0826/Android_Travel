@@ -32,9 +32,11 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
         String vertShader = ShaderUtils.getRawShader(context, R.raw.vert);
         String fragShader = ShaderUtils.getRawShader(context, R.raw.frag);
         shader = new Rectangle(vertShader, fragShader);
+        shader.initShader();
     }
 
     public void setShader(ShaderProgram shader) {
+        shader.sizeChange(this.shader.width, this.shader.height);
         this.shader = shader;
     }
 
@@ -57,6 +59,7 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
         LogUtils.d("onSurfaceChanged : width = " + width + " , height = " + height);
         // 设置 GL 绘制的视图大小
         GLES20.glViewport(0, 0, width, height);
+        shader.sizeChange(width, height);
     }
 
     /**
