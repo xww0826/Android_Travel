@@ -1,7 +1,7 @@
 package com.xww.notes.learn_opengl.sample.glsurfaceview;
 
 import android.content.Context;
-import android.opengl.GLES20;
+import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
 
 import com.xww.notes.learn_opengl.LogUtils;
@@ -47,7 +47,7 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         LogUtils.d("onSurfaceCreated");
         // 设置绘图背景
-        GLES20.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+        GLES30.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         initShader();
     }
 
@@ -58,7 +58,7 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         LogUtils.d("onSurfaceChanged : width = " + width + " , height = " + height);
         // 设置 GL 绘制的视图大小
-        GLES20.glViewport(0, 0, width, height);
+        GLES30.glViewport(0, 0, width, height);
         shader.sizeChange(width, height);
     }
 
@@ -69,7 +69,7 @@ public class SampleGLRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 gl) {
         LogUtils.d("onDrawFrame");
         // 首先清理屏幕
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT);
         shader.draw();
     }
 

@@ -1,6 +1,7 @@
 package com.xww.notes.learn_opengl.sample.glsurfaceview.shape;
 
-import android.opengl.GLES20;
+import android.opengl.GLES30;
+import android.opengl.GLES30;
 
 import com.xww.notes.learn_opengl.utils.ShaderUtils;
 
@@ -25,20 +26,20 @@ public class Triangle extends ShaderProgram {
     @Override
     public void draw() {
         // 激活着色器程序,把程序添加到 OpenGL 环境
-        GLES20.glUseProgram(mProgram);
+        GLES30.glUseProgram(mProgram);
         // 获取顶点着色器中的 vPosition 变量(因为之前已经编译过着色器代码,所以可以从着色器程序中获取)
-        int position = GLES20.glGetAttribLocation(mProgram, "vPosition");
-        GLES20.glEnableVertexAttribArray(position);
+        int position = GLES30.glGetAttribLocation(mProgram, "vPosition");
+        GLES30.glEnableVertexAttribArray(position);
         // 将顶点数据传递给 position 指向的 vPosition 变量,将顶点属性与顶点缓冲对象关联
-        GLES20.glVertexAttribPointer(position, PER_VERTEX, GLES20.GL_FLOAT, false, PER_VERTEX * FLOAT_BYTE, vertexBuffer);
+        GLES30.glVertexAttribPointer(position, PER_VERTEX, GLES30.GL_FLOAT, false, PER_VERTEX * FLOAT_BYTE, vertexBuffer);
         // 获取片段着色器中的 vColor 变量
-        int color = GLES20.glGetUniformLocation(mProgram, "vColor");
+        int color = GLES30.glGetUniformLocation(mProgram, "vColor");
         // 通过 color 设置绘制的颜色值
-        GLES20.glUniform4fv(color, 1, fillColor, 0);
+        GLES30.glUniform4fv(color, 1, fillColor, 0);
         // 绘制顶点数组
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, TRIANGLE_VERTEXES.length / PER_VERTEX);
+        GLES30.glDrawArrays(GLES30.GL_TRIANGLES, 0, TRIANGLE_VERTEXES.length / PER_VERTEX);
         // 操作完后,取消允许操作顶点对象 position
-        GLES20.glDisableVertexAttribArray(position);
+        GLES30.glDisableVertexAttribArray(position);
     }
 
     @Override

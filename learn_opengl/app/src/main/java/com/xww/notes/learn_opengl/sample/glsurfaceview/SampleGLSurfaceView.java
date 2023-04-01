@@ -39,8 +39,8 @@ public class SampleGLSurfaceView extends GLSurfaceView {
     private void init() {
         random = new Random();
 
-        // 创建 OpenGL ES 2.0 上下文
-        setEGLContextClientVersion(2);
+        // 创建 OpenGL ES 3.0 上下文
+        setEGLContextClientVersion(3);
         // 创建 GLSurfaceView 的渲染器
         renderer = new SampleGLRenderer(getContext());
         // 设置渲染器
