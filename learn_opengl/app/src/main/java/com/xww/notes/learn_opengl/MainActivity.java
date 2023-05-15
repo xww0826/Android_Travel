@@ -6,7 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.xww.notes.learn_opengl.databinding.ActivityMainBinding;
-import com.xww.notes.learn_opengl.sample.glsurfaceview.GLSurfaceActivity;
+import com.xww.notes.learn_opengl.sample.GLSurfaceActivity;
+import com.xww.notes.learn_opengl.sample.glsurfaceview.GLShapeActivity;
 
 public class MainActivity extends AppCompatActivity {
 

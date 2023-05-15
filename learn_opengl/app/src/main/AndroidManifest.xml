@@ -27,7 +27,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".sample.glsurfaceview.GLSurfaceActivity" />
+        <activity
+            android:name=".sample.GLSurfaceActivity"
+            android:label="GLSurfaceView" />
+        <activity
+            android:name=".sample.glsurfaceview.GLShapeActivity"
+            android:label="GLShape" />
     </application>
 
 </manifest>
